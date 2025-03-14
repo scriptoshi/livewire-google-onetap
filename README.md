@@ -52,7 +52,7 @@ php artisan vendor:publish --tag=google-onetap-migrations
 
 ## Usage
 
-To use the component, make sure you have livewire installed and properly set up in your Laravel application. Livewire includes Alpine by default.
+To use the component, make sure you have Livewire installed and properly set up in your Laravel application. Livewire includes Alpine by default.
 
 Then, in your login or registration page, add the component:
 
@@ -68,9 +68,42 @@ For registration pages, specify the type:
 
 This component will automatically load the Google API script, so you don't need to include it separately in your layout.
 
+## User Avatar
+
+When users sign in with Google, their Google profile picture URL is stored in the `google_avatar_url` field. You can use this to display their profile picture in your application:
+
+```blade
+@if(auth()->user()->google_avatar_url)
+    <img src="{{ auth()->user()->google_avatar_url }}" alt="{{ auth()->user()->name }}" class="rounded-full h-10 w-10">
+@else
+    <!-- Fallback avatar -->
+@endif
+```
+
+This can be particularly useful for creating a consistent user experience when users sign in with Google.
+
+## Configure Tailwind CSS
+
+To ensure that Tailwind CSS properly processes the component styles, add this package to your content sources in your CSS file (typically `resources/css/app.css`):
+
+```css
+/* Add this line with your other @source directives */
+@source '../../vendor/scriptoshi/livewire-google-onetap/resources/views/**/*.blade.php';
+```
+
+For example, your CSS file might look similar to this:
+
+```css
+@import "tailwindcss";
+@source "../views";
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/scriptoshi/livewire-google-onetap/resources/views/**/*.blade.php';
+/* Rest of your CSS file */
+```
+
 ## Customization
 
-You can publish the view and modify it, but keep in mind, google restricts how much you can customize,
+You can publish the view and modify it, but keep in mind, Google restricts how much you can customize:
 
 ```bash
 php artisan vendor:publish --tag=google-onetap-views
