@@ -14,10 +14,10 @@ composer require scriptoshi/livewire-google-onetap
 
 This package requires:
 
-- PHP 8.2+
-- Laravel 12.x
-- Livewire 3.x
-- Alpine.js
+-   PHP 8.2+
+-   Laravel 12.x
+-   Livewire 3.x
+-   Alpine.js
 
 ## Configuration
 
@@ -52,7 +52,7 @@ php artisan vendor:publish --tag=google-onetap-migrations
 
 ## Usage
 
-To use the component, make sure you have Alpine.js installed and properly set up in your Laravel application.
+To use the component, make sure you have livewire installed and properly set up in your Laravel application. Livewire includes Alpine by default.
 
 Then, in your login or registration page, add the component:
 
@@ -70,7 +70,7 @@ This component will automatically load the Google API script, so you don't need 
 
 ## Customization
 
-You can publish the views to customize them:
+You can publish the view and modify it, but keep in mind, google restricts how much you can customize,
 
 ```bash
 php artisan vendor:publish --tag=google-onetap-views
