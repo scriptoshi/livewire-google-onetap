@@ -15,12 +15,13 @@ return new class extends Migration
             if (!Schema::hasColumn('users', 'googleId')) {
                 $table->string('googleId')->nullable()->after('remember_token');
             }
-
             if (!Schema::hasColumn('users', 'google_avatar_url')) {
                 $table->string('google_avatar_url')->nullable()
                     ->after('googleId')
                     ->comment('URL to user google avatar image');
             }
+            if (Schema::hasColumn('users', 'password'))
+                $table->string('password')->nullable()->change();
         });
     }
 
