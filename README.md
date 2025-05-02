@@ -14,18 +14,10 @@ composer require scriptoshi/livewire-google-onetap
 
 This package requires:
 
--   PHP 8.2+
 -   Laravel 12.x
 -   Livewire 3.x
--   Alpine.js
 
 ## Configuration
-
-Publish the configuration file with:
-
-```bash
-php artisan vendor:publish --tag=google-onetap-config
-```
 
 You'll need to set up your Google OAuth credentials in your `.env` file:
 
@@ -33,8 +25,6 @@ You'll need to set up your Google OAuth credentials in your `.env` file:
 GOOGLE_CLIENT_ID=your-client-id
 GOOGLE_CLIENT_SECRET=your-client-secret
 ```
-
-Or, if you're already using Laravel Socialite, it will use those credentials by default from your `services.google` config.
 
 ## Database Migration
 
@@ -44,15 +34,9 @@ This package adds Google authentication fields to your `users` table. To run the
 php artisan migrate
 ```
 
-Or you can publish the migrations and customize them:
-
-```bash
-php artisan vendor:publish --tag=google-onetap-migrations
-```
-
 ## Usage
 
-To use the component, make sure you have Livewire installed and properly set up in your Laravel application. Livewire includes Alpine by default.
+To use the component, make sure you are using laravel 12 starter kit with livewire/volt.
 
 Then, in your login or registration page, add the component:
 
@@ -66,7 +50,20 @@ For registration pages, specify the type:
 <livewire:google-onetap type="register" />
 ```
 
-This component will automatically load the Google API script, so you don't need to include it separately in your layout.
+This component will create automatically load the Google API script, so you don't need to include it separately in your layout.
+
+Example
+
+```blade
+{{!-- The normal login button --}}
+<div class="flex items-center justify-end">
+    <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+</div>
+
+{{!-- The google one tap button will be rendered here --}}
+<flux:separator text="or" />
+<livewire:google-onetap type="login" width="384px" />
+```
 
 ## User Avatar
 
@@ -107,6 +104,18 @@ You can publish the view and modify it, but keep in mind, Google restricts how m
 
 ```bash
 php artisan vendor:publish --tag=google-onetap-views
+```
+
+Optional Step: If you need to customize the migrations, you can publish them:
+
+```bash
+php artisan vendor:publish --tag=google-onetap-migrations
+```
+
+Optional Step: If you need to customize the component, you can publish the config:
+
+```bash
+php artisan vendor:publish --tag=google-onetap-config
 ```
 
 ## Styling
