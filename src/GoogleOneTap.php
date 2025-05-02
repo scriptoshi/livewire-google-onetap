@@ -16,13 +16,15 @@ class GoogleOneTap extends Component
      * The type of button to render (login or register)
      */
     public string $type = 'login';
+    public string $width = '364px';
 
     /**
      * Initialize the component
      */
-    public function mount(string $type = 'login'): void
+    public function mount(string $type = 'login', string $width = '364px'): void
     {
         $this->type = $type;
+        $this->width = $width;
     }
 
     /**

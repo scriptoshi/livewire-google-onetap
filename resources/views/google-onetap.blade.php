@@ -54,7 +54,7 @@
                     theme: this.dark ? 'filled_black' : 'outline',
                     text: '{{ $type }}' === 'register' ? 'signup_with' : 'signin_with',
                     size: 'large',
-                    width: '364px',
+                    width: '{{ $width }}',
                     height: '48px',
                     logo_alignment: 'left',
                 }
