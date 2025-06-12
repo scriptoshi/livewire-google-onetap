@@ -54,9 +54,9 @@ class GoogleOneTap extends Component
                 // Create a new user
                 $user = $userModel::create([
                     'name' => $social->getName(),
-                    'email' => $social->getEmail(),
-                    'email_verified_at' => now()
+                    'email' => $social->getEmail()
                 ]);
+                $user->email_verified_at = now();
                 $user->googleId = $social->getId();
                 $user->google_avatar_url = $social->getAvatar();
                 $user->save();
@@ -65,6 +65,10 @@ class GoogleOneTap extends Component
                 if (!$user->googleId) {
                     $user->googleId = $social->getId();
                     $user->google_avatar_url = $social->getAvatar();
+                    $user->email_verified_at = now();
+                    $user->save();
+                }
+                if (!$user->email_verified_at) {
                     $user->email_verified_at = now();
                     $user->save();
                 }
