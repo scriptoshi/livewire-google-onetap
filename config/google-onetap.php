@@ -31,7 +31,7 @@ return [
     | This value is the path where users will be redirected after authentication.
     |
     */
-    'redirect' => '/dashboard',
+    'redirect' => 'dashboard',
 
     /*
     |--------------------------------------------------------------------------

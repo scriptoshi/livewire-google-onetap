@@ -78,10 +78,10 @@ class GoogleOneTap extends Component
             Auth::login($user);
 
             // Get the redirect path from config
-            $redirectPath = Config::get('google-onetap.redirect') ?: '/dashboard';
-
+            $redirectRoute = Config::get('google-onetap.redirect') ?: 'dashboard';
             // Redirect to dashboard
-            return $this->redirect(route(ltrim($redirectPath, '/'), absolute: false));
+            // If the redirect URL is a route name, resolve it
+            $this->redirectIntended(default: route($redirectRoute, absolute: false), navigate: true);
         } catch (\Exception $e) {
             session()->flash('error', 'Google authentication failed: ' . $e->getMessage());
         }
